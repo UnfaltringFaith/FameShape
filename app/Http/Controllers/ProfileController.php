@@ -12,6 +12,12 @@ use Illuminate\View\View;
 class ProfileController extends Controller
 {
     /**
+     * Create a new controller instance.
+     */
+    public function index(Request $request){
+        return response()->json(['message' => 'ProfileController is working'], 200);
+    }
+    /**
      * Display the user's profile form.
      */
     public function edit(Request $request): View
