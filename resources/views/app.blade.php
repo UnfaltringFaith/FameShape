@@ -9,8 +9,6 @@
 
 <body>
     <div id="app">
-        <header-component></header-component>
-        <example-component></example-component>
     </div>
 </body>
 

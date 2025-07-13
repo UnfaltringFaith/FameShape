@@ -12,7 +12,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::with('user:id,name', 'tags:name')->paginate(10);
+        $posts = Post::with('user:id,name', 'tags:name')->paginate(9);
         return response()->json($posts);
     }
 
@@ -111,5 +111,21 @@ class PostController extends Controller
     {
         $posts = Post::where('user_id', Auth::id())->with('user:id,name', 'tags:name')->paginate(10);
         return response()->json($posts);
+    }
+
+    public function like(Post $post)
+    {
+        $post->likes++;
+        $post->save();
+
+        return response()->json(['likes' => $post->likes]);
+    }
+
+    public function dislike(Post $post)
+    {
+        $post->likes--;
+        $post->save();
+
+        return response()->json(['dislikes' => $post->likes]);
     }
 }
