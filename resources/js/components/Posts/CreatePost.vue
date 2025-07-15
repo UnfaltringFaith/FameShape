@@ -83,6 +83,7 @@ const showTags = ref(false)
 const selectedTags = ref([])
 const loading = ref(false)
 const notification = ref('')
+const router = useRouter()
 
 const form = ref({
     title: '',
@@ -118,7 +119,9 @@ const handleSubmit = async () => {
         setTimeout(() => {
             notification.value = ''
         }, 3000)
-        console.log('Form submitted, post created');
+        console.log('Form submitted, post created', response.data);
+
+        router.push(`/posts/${response.data.post.id}`) // Перенаправление на страницу постов
     } catch (error) {
         console.error('Error during form submission:', error)
     } finally {

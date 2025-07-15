@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PostsResource;
 use App\Models\Post;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -12,8 +13,8 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::with('user:id,name', 'tags:name')->paginate(9);
-        return response()->json($posts);
+        $posts = Post::with('user', 'tags:name')->paginate(9);
+        return PostsResource::collection($posts);
     }
 
     public function create()
@@ -57,7 +58,7 @@ class PostController extends Controller
 
         return response()->json([
             'message' => 'Post created successfully',
-            'post' => $post->load('tags'), // Load tags relationship
+            'post' => $post, 
         ], 201);
     }
 

@@ -21,6 +21,8 @@ const token = localStorage.getItem('auth_token') || null;
 const username = ref(null);
 
 onMounted(() => {
+  console.log('Head token', token);
+  
   if (token) {
     axios.get('/api/user', {
       headers: {

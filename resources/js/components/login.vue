@@ -190,16 +190,20 @@ const handleLogin = async () => {
       // remember: form.value.remember
     })
 
-    console.log('Login response:', response.data);
     
     // Сохранить токен в localStorage
     if (response.data.token) {
       localStorage.setItem('auth_token', response.data.token)
+
+      console.log('Login response:', response.data)
+
       // Установить заголовок для будущих запросов
       axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`
     }
     
     // Перенаправить на главную или дашборд
+
+    router.push('/')
       
   } catch (error) {
     if (error.response && error.response.data) {

@@ -66,7 +66,7 @@
                 :key="tag.id"
                 class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full"
               >
-                #{{ tag.name }}
+                #{{ tag }}
               </span>
             </div>
           </div>
